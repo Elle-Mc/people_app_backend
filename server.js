@@ -87,7 +87,14 @@ app.put("/people/:id", async (req, res) => {
     }
 })
 
-
+// People delete route
+app.delete("/people/:id", async (req, res) => {
+    try {
+        res.json(await People.findByIdAndRemove(req.params.id))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
 
 ///////////////////////////////
 // LISTENER
